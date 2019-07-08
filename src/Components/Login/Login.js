@@ -33,7 +33,7 @@ class Login extends Component {
 				<p className={classes.tomatoText}>Wellcome to the</p>
 				<h2 className={classes.header}>Would You Rather?</h2>
 				<p className={classes.tomatoText}>App</p>
-				<p>To continue please log in.</p>
+				<p className={classes.text}>To continue please log in.</p>
 				<form onSubmit={this.handleSubmit}>
 					<select
 						className={classes.input}

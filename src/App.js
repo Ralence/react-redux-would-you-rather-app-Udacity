@@ -8,6 +8,7 @@ import Login from './Components/Login/Login';
 import NewQuestion from './Components/NewQuestion/NewQuestion';
 import Leaderboard from './Components/Leaderboard/Leaderboard';
 import Questions from './Components/Questions/Questions';
+import QuestionItem from './Components/Questions/QuestionItem/QuestionItem';
 
 import './App.css';
 
@@ -20,8 +21,6 @@ class App extends Component {
   }
 
   render() {
-    // eslint-disable-next-line no-console
-    console.log(this.props);
     return (
       <div className="App">
         <LoadingBar />
@@ -39,12 +38,16 @@ class App extends Component {
                   />
                 )}
               />
-              <Route exact path="/new" component={NewQuestion} />
+              <Route
+                exact
+                path="/new"
+                render={() => <NewQuestion authedUser={this.props.authedUser} />} />
               <Route
                 exact
                 path="/leaderboard"
                 render={() => <Leaderboard users={this.props.users} />}
               />
+              <Route path={"/:id"} component={QuestionItem} />
             </Switch>
           </React.Fragment>)
           : (

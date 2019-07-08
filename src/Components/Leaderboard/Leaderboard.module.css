@@ -1,3 +1,7 @@
+.mainContainer {
+    margin-bottom: 150px;
+}
+
 .container {
     display: flex;
     max-width: 400px;
@@ -7,7 +11,7 @@
     margin-top: 40px;
     padding: 10px;
     box-shadow: 0 0 2px rgb(207, 203, 203);
-    height: 100px;
+    height: 150px;
   }
 
 .imgContainer {
@@ -16,9 +20,10 @@
 }
 
 .img {
-    height: 100%;
-    width: auto;
+    height: auto;
+    width: 80%;
     margin: auto;
+    margin-top: 15px;
 }
 
 .info {
@@ -32,6 +37,8 @@
 
 .name {
     margin: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .scoreItem {
@@ -45,6 +52,11 @@
 
 .score {
     width: 15%;
+    height: 100%;
+}
+
+.score p {
+    margin-top: 40px;
 }
 
 .tomato {

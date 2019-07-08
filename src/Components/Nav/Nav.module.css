@@ -20,7 +20,27 @@
     background: rgb(223, 223, 223);
 }
 
-@media (min-width: 400px) {
+.navItem {
+    height: 100%;
+}
+
+.userOptions {
+    height: 70px;
+    margin: 0;
+    padding: 0;
+}
+
+.logout {
+    border: none;
+    color: white;
+    background: tomato;
+    width: 70%;
+    height: 25px;
+    float: right;
+    margin-bottom: 5px;
+}
+
+@media (min-width: 450px) {
     .NavigationItems {
         flex-direction: row;
     }

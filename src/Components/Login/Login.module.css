@@ -12,10 +12,15 @@
 .tomatoText {
   color: tomato;
   font-size: 1.2rem;
+  margin: 20px 0;
 }
 
 .header {
   font-style: oblique;
+}
+
+.text {
+  margin: 10px 0;
 }
 
 .input {
@@ -28,4 +33,6 @@
   background-color: tomato;
   height: 30px;
   border: none;
+  margin: 0;
+  padding: 0 5px;
 }
