@@ -1,10 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import classes from "./Question.module.css";
-import { connect } from "react-redux";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import classes from './Question.module.css';
 
 const Question = props => {
-
   const { question, isAnswered } = props;
   const author = props.users[question.author];
 
@@ -16,16 +15,12 @@ const Question = props => {
 
       <div className={classes.body}>
         <div className={classes.imgContainer}>
-          <img
-            className={classes.img}
-            src={author.avatarURL}
-            alt={author.name + "'s avatar"}
-          />
+          <img className={classes.img} src={author.avatarURL} alt={`${author.name}'s avatar`} />
         </div>
         <div className={classes.info}>
           <h4 className={classes.name}>Would you rather</h4>
           <p className={classes.scoreItem}>
-            <span>{question.optionOne.text}...</span>
+            <span>...{question.optionOne.text}...</span>
           </p>
           <Link
             to={{
@@ -33,11 +28,13 @@ const Question = props => {
               state: {
                 question,
                 author,
-                isAnswered
-              }
+                isAnswered,
+              },
             }}
           >
-            <button className={classes.btn}>View Question</button>
+            <button type="button" className={classes.btn}>
+              View Question
+            </button>
           </Link>
         </div>
       </div>
@@ -45,10 +42,8 @@ const Question = props => {
   );
 };
 
-const mapStateToProps = ({ users }) => {
-  return {
-    users
-  };
-};
+const mapStateToProps = ({ users }) => ({
+  users,
+});
 
 export default connect(mapStateToProps)(Question);

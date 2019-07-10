@@ -15,6 +15,7 @@ import './App.css';
 class App extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
+    // Dispatch actions to the reducers to load the initial data from the server and set up the state in the store
     dispatch(showLoading());
     dispatch(getUsers());
     dispatch(getQuestions()).then(() => dispatch(hideLoading()));
@@ -28,32 +29,23 @@ class App extends Component {
           <React.Fragment>
             <Nav authedUser={this.props.authedUser} />
             <Switch>
-              <Route
-                exact
-                path="/"
-                render={() => (
-                  <Questions
-                    questions={this.props.questions}
-                    authedUser={this.props.authedUser}
-                  />
-                )}
-              />
+              <Route exact path="/" render={() => <Questions />} />
               <Route
                 exact
                 path="/new"
-                render={() => <NewQuestion authedUser={this.props.authedUser} />} />
+                render={() => <NewQuestion authedUser={this.props.authedUser} />}
+              />
               <Route
                 exact
                 path="/leaderboard"
                 render={() => <Leaderboard users={this.props.users} />}
               />
-              <Route path={"/:id"} component={QuestionItem} />
+              <Route path="/:id" component={QuestionItem} />
             </Switch>
-          </React.Fragment>)
-          : (
-            <Login users={this.props.users} />
-          )}
-
+          </React.Fragment>
+        ) : (
+          <Login users={this.props.users} />
+        )}
       </div>
     );
   }

@@ -5,8 +5,7 @@ const authedUserReducer = (state = null, action) => {
     case SET_AUTHED_USER:
       return action.id;
     case LOGOUT:
-      const newState = null;
-      return newState;
+      return null;
     default:
       return state;
   }

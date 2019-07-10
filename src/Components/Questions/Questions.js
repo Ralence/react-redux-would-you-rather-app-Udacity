@@ -1,45 +1,52 @@
-import React, { Component } from "react";
-import Question from "./Question";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import "react-tabs/style/react-tabs.css";
-import classes from "./Questions.module.css";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import Question from './Question';
+import 'react-tabs/style/react-tabs.css';
+import classes from './Questions.module.css';
 
+// Takes questions, sorts the to answered and unanswered and displays them in tabs in order from newer questions to older
 class Questions extends Component {
   render() {
     const { questions, authedUser } = this.props;
     const answered = !authedUser
       ? []
       : Object.keys(questions)
-        .filter(
-          key =>
-            questions[key].optionOne.votes.includes(authedUser) ||
-            questions[key].optionTwo.votes.includes(authedUser)
-        )
-        .map(ques => questions[ques])
-        .sort((a, b) => b.timestamp - a.timestamp);
+          .filter(
+            key =>
+              questions[key].optionOne.votes.includes(authedUser) ||
+              questions[key].optionTwo.votes.includes(authedUser)
+          )
+          .map(ques => questions[ques])
+          .sort((a, b) => b.timestamp - a.timestamp);
     const unanswered = !authedUser
       ? []
-      : Object.keys(questions).filter(
-        key =>
-          !questions[key].optionOne.votes.includes(authedUser) &&
-          !questions[key].optionTwo.votes.includes(authedUser)
-      )
-        .map(ques => questions[ques])
-        .sort((a, b) => b.timestamp - a.timestamp);
+      : Object.keys(questions)
+          .filter(
+            key =>
+              !questions[key].optionOne.votes.includes(authedUser) &&
+              !questions[key].optionTwo.votes.includes(authedUser)
+          )
+          .map(ques => questions[ques])
+          .sort((a, b) => b.timestamp - a.timestamp);
 
     const renderAnswered = answered.map(ques => (
       <Question
         key={ques.id}
         question={ques}
-        isAnswered={true}
-        listItem={true} />
+        isAnswered={
+          ques.optionOne.votes.includes(authedUser) || ques.optionTwo.votes.includes(authedUser)
+        }
+      />
     ));
     const renderUnanswered = unanswered.map(ques => (
       <Question
         key={ques.id}
         question={ques}
-        isAnswered={false}
-        listItem={true} />
+        isAnswered={
+          ques.optionOne.votes.includes(authedUser) || ques.optionTwo.votes.includes(authedUser)
+        }
+      />
     ));
 
     return (
@@ -59,4 +66,9 @@ class Questions extends Component {
   }
 }
 
-export default Questions;
+const mapStateToProps = ({ questions, authedUser }) => ({
+  questions,
+  authedUser,
+});
+
+export default connect(mapStateToProps)(Questions);

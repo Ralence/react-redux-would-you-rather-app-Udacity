@@ -9,10 +9,10 @@ export const receiveQuestions = questions => ({
 
 export const saveQuestion = question => ({
   type: SAVE_QUESTION,
-  question
+  question,
 });
 
 export const answerQuestion = answerInfo => ({
   type: ANSWER_QUESTION,
-  answerInfo
+  answerInfo,
 });

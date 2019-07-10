@@ -1,68 +1,42 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Would You Rather?
 
-## Available Scripts
+## Information
 
-In the project directory, you can run:
+* Project .........Would You Rather?
+* Purpose .........Udacity React Nanodegree Project
+* Creator .........Ranko Ostojic
+* Created .........July, 2019
 
-### `npm start`
+#### Short Description of the Project
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This is a project for Udacity's React & Redux course, it is a part of Udacity's React Developer Nanodegree program. The purpose of this project is to demonstrate ability to effectively use Redux for state management in React applications.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+This project was built entirely from scratch using create-react-app.
 
-### `npm test`
+This project was styled with vanilla CSS, using CSS modules for component specific styling.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Onload the application will display a simple log in form where the user only need to select one of the existing user and click the Log In button to continue to the app.
 
-### `npm run build`
+Once logged in the user can navigate between Home, Leader Board and New Question pages. The user can view answered as well as unanswered questions, answer questions and see stats for the questions that have been already answered by the user. The user can submit a new question, view leader board, sign out of the app...
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+## Installation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To get the project running on your local machine:
 
-### `npm run eject`
+* clone this repo
+* install all project dependencies with `npm install`
+* start the development server with `npm start`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Added dependencies
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+In addition the the starter files from create-react-app following dependencies have been added:
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+* redux
+* react-redux
+* redux-thunk
+* redux devtools extention
+* react-redux-loading-bar
+* react-router-dom
+* react-tabs
+* avatar icons are taken from https://www.shareicon.net/pack/people?cl=seagreen

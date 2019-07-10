@@ -25,19 +25,22 @@
 }
 
 .userOptions {
-    height: 70px;
+    height: 40px;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    font-size: 0.9rem;
 }
 
 .logout {
     border: none;
     color: white;
     background: tomato;
-    width: 70%;
-    height: 25px;
-    float: right;
-    margin-bottom: 5px;
+    padding: 5px 5px;
+    height: 35px;
+    align-self: flex-end;
 }
 
 @media (min-width: 450px) {

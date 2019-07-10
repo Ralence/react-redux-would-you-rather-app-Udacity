@@ -1,0 +1,22 @@
+{
+    "window.zoomLevel": 1,
+    "team.showWelcomeMessage": false,
+    "liveServer.settings.donotShowInfoMsg": true,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "prettier.endOfLine": "lf",
+    "eslint.alwaysShowStatus": true,
+    "eslint.autoFixOnSave": true,
+    "javascript.format.enable": false,
+    "[javascript]": {
+        "editor.formatOnSave": true
+    },
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "prettier.stylelintIntegration": true,
+    "prettier.singleQuote": true,
+    "prettier.useTabs": true,
+    "editor.formatOnSave": true,
+    "files.trimTrailingWhitespace": true,
+    "eslint.provideLintTask": true,
+    "prettier.eslintIntegration": true
+}

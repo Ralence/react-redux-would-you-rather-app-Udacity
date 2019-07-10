@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import classes from "./QuestionForm.module.css";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import { handleAnswerQuestion } from "../../../Actions/index";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import classes from './QuestionForm.module.css';
+import { handleAnswerQuestion } from '../../../Actions/index';
 
 class QuestionForm extends Component {
   state = {
-    selected: null
+    selected: null,
   };
 
   handleChange = e => {
@@ -15,20 +15,21 @@ class QuestionForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { authedUser, dispatch } = this.props;
+    const { authedUser } = this.props;
     const qid = this.props.question.id;
     const answer = this.state.selected;
     const answerInfo = {
       authedUser,
       answer,
-      qid
+      qid,
     };
-    dispatch(handleAnswerQuestion(answerInfo));
-    this.props.history.push("/");
+    // redirect is hndled in Thunk
+    this.props.handleAnswerQuestion(answerInfo);
   };
 
   render() {
-    const { question, author } = this.props;
+    const { question, users } = this.props;
+    const author = users[question.author];
     return (
       <div className={classes.container}>
         <div className={classes.header}>
@@ -37,32 +38,30 @@ class QuestionForm extends Component {
 
         <div className={classes.body}>
           <div className={classes.imgContainer}>
-            <img
-              className={classes.img}
-              src={author.avatarURL}
-              alt={author.name + "'s avatar"}
-            />
+            <img className={classes.img} src={author.avatarURL} alt={`${author.name}'s avatar`} />
           </div>
           <div className={classes.formContainer}>
             <h4 className={classes.name}>Would you rather..</h4>
             <form className={classes.form} onSubmit={this.handleSubmit}>
               <div className={classes.formItem}>
-                <label>
+                <label htmlFor="option one">
                   <input
+                    id="option one"
                     type="radio"
                     value="optionOne"
-                    checked={this.state.selected === "optionOne"}
+                    checked={this.state.selected === 'optionOne'}
                     onChange={this.handleChange}
                   />
                   {question.optionOne.text}
                 </label>
               </div>
               <div className={classes.formItem}>
-                <label>
+                <label htmlFor="option two">
                   <input
+                    id="option two"
                     type="radio"
                     value="optionTwo"
-                    checked={this.state.selected === "optionTwo"}
+                    checked={this.state.selected === 'optionTwo'}
                     onChange={this.handleChange}
                   />
                   {question.optionTwo.text}
@@ -77,10 +76,19 @@ class QuestionForm extends Component {
   }
 }
 
-const mapStateToProps = ({ authedUser }) => {
-  return {
-    authedUser
-  };
-};
+const mapStateToProps = ({ authedUser, users }) => ({
+  authedUser,
+  users,
+});
 
-export default withRouter(connect(mapStateToProps)(QuestionForm));
+// Add ownProps to dispatch so props.history.push() is available in Thunk
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  handleAnswerQuestion: answerInfo => dispatch(handleAnswerQuestion(answerInfo, ownProps)),
+});
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(QuestionForm)
+);

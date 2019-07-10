@@ -1,0 +1,19 @@
+.wrapper {
+    width: 90%;
+    margin: auto;
+}
+
+.progressBar {
+    width: 100%;
+    background-color: #e0e0e0;
+    padding: 3px;
+    border-radius: 5px;
+    border: none;
+}
+
+.progressBarFill {
+    display: block;
+    height: 22px;
+    background-color: tomato;
+    border-radius: 5px;
+}

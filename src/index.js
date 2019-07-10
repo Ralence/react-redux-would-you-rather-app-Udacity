@@ -7,13 +7,10 @@ import thunk from 'redux-thunk';
 import rootReducer from './Reducers/index';
 import './index.css';
 import App from './App';
-
+// Add redux devtools
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-const store = createStore(
-  rootReducer,
-  composeEnhancers(applyMiddleware(thunk))
-);
+// Add the root reducer and middleware to the store
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
 
 const app = (
   <Provider store={store}>

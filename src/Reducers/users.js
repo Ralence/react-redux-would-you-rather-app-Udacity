@@ -1,5 +1,5 @@
 import { RECEIVE_USERS } from '../Actions/users';
-import { SAVE_QUESTION, ANSWER_QUESTION } from "../Actions/questions";
+import { SAVE_QUESTION, ANSWER_QUESTION } from '../Actions/questions';
 
 const usersReducer = (state = {}, action) => {
   switch (action.type) {
@@ -13,10 +13,8 @@ const usersReducer = (state = {}, action) => {
         ...state,
         [action.question.author]: {
           ...state[action.question.author],
-          questions: state[action.question.author].questions.concat([
-            action.question
-          ])
-        }
+          questions: state[action.question.author].questions.concat([action.question]),
+        },
       };
     case ANSWER_QUESTION:
       return {
@@ -25,9 +23,9 @@ const usersReducer = (state = {}, action) => {
           ...state[action.answerInfo.authedUser],
           answers: {
             ...state[action.answerInfo.authedUser].answers,
-            [action.answerInfo.qid]: action.answerInfo.answer
-          }
-        }
+            [action.answerInfo.qid]: action.answerInfo.answer,
+          },
+        },
       };
     default:
       return state;

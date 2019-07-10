@@ -1,18 +1,18 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import { handleSaveQuestion } from "../../Actions";
-import classes from "./NewQuestion.module.css";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { handleSaveQuestion } from '../../Actions';
+import classes from './NewQuestion.module.css';
 
 class NewQuestion extends Component {
   state = {
-    optionOne: "",
-    optionTwo: ""
+    optionOne: '',
+    optionTwo: '',
   };
 
   handleChange = e => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -20,31 +20,24 @@ class NewQuestion extends Component {
     e.preventDefault();
 
     const { dispatch } = this.props;
+    // Create question info needed for dispatch
     const question = {
       optionOneText: this.state.optionOne,
       optionTwoText: this.state.optionTwo,
-      author: this.props.authedUser
+      author: this.props.authedUser,
     };
-
-    if (
-      this.state.optionOne.length === 0 ||
-      this.state.optionTwo.length === 0
-    ) {
-      alert("Please fill in the questions!");
+    // Check against empty questions, alert and only dispatch if inputs are not empty
+    if (this.state.optionOne.length === 0 || this.state.optionTwo.length === 0) {
+      alert('Please fill in the questions!');
     } else {
-      dispatch(handleSaveQuestion(question)).then(() =>
-        this.props.history.push("/")
-      );
+      dispatch(handleSaveQuestion(question)).then(() => this.props.history.push('/'));
     }
   };
 
   render() {
     return (
       <div className={classes.container}>
-        <p>
-          To create a new question enter two answer options in the text fileds
-          below
-        </p>
+        <p>To create a new question enter two answer options in the text fileds below</p>
         <h2 className={classes.header}>Would you rather...</h2>
         <form onSubmit={this.handleSubmit}>
           <div className={classes.inputContainer}>
@@ -57,7 +50,8 @@ class NewQuestion extends Component {
               onChange={this.handleChange}
               maxLength="50"
             />
-            {this.state.optionOne.length > 35 && (
+            {/* input lenght is limited to 50 characters dispaly remaining characters count if remeinin is less than 15 */
+            this.state.optionOne.length > 35 && (
               <p className={classes.red}>{50 - this.state.optionOne.length}</p>
             )}
           </div>
@@ -72,11 +66,14 @@ class NewQuestion extends Component {
               onChange={this.handleChange}
               maxLength="50"
             />
-            {this.state.optionTwo.length > 35 && (
+            {/* input lenght is limited to 50 characters dispaly remaining characters count if remeinin is less than 15 */
+            this.state.optionTwo.length > 35 && (
               <p className={classes.red}>{50 - this.state.optionTwo.length}</p>
             )}
           </div>
-          <button className={classes.btn}>Submit</button>
+          <button type="submit" className={classes.btn}>
+            Submit
+          </button>
         </form>
       </div>
     );

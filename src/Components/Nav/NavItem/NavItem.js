@@ -1,7 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-
 import classes from './NavItem.module.css';
 
 const navigationItem = props => (
