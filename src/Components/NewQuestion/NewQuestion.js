@@ -30,7 +30,7 @@ class NewQuestion extends Component {
     if (this.state.optionOne.length === 0 || this.state.optionTwo.length === 0) {
       alert('Please fill in the questions!');
     } else {
-      dispatch(handleSaveQuestion(question)).then(() => this.props.history.push('/'));
+      dispatch(handleSaveQuestion(question)).then(() => this.props.history.push('/home'));
     }
   };
 
@@ -80,4 +80,8 @@ class NewQuestion extends Component {
   }
 }
 
-export default withRouter(connect()(NewQuestion));
+const mapStateToProps = ({ authedUser }) => ({
+  authedUser,
+});
+
+export default withRouter(connect(mapStateToProps)(NewQuestion));

@@ -33,7 +33,7 @@ class Questions extends Component {
     const renderAnswered = answered.map(ques => (
       <Question
         key={ques.id}
-        question={ques}
+        questionID={ques.id}
         isAnswered={
           ques.optionOne.votes.includes(authedUser) || ques.optionTwo.votes.includes(authedUser)
         }
@@ -42,7 +42,7 @@ class Questions extends Component {
     const renderUnanswered = unanswered.map(ques => (
       <Question
         key={ques.id}
-        question={ques}
+        questionID={ques.id}
         isAnswered={
           ques.optionOne.votes.includes(authedUser) || ques.optionTwo.votes.includes(authedUser)
         }

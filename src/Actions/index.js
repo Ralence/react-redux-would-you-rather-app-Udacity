@@ -25,7 +25,7 @@ export const handleAnswerQuestion = (questionInfo, ownProps) => dispatch => {
     dispatch(hideLoading());
     // After the question ansver is saved on server and locally navigate to the updated Question Stas
     ownProps.history.push({
-      pathname: `/${ownProps.question.id}`,
+      pathname: `/questions/${ownProps.question.id}`,
       state: {
         question: ownProps.question,
         author: ownProps.author,

@@ -4,8 +4,17 @@ import { connect } from 'react-redux';
 import classes from './Question.module.css';
 
 const Question = props => {
-  const { question, isAnswered } = props;
-  const author = props.users[question.author];
+  const questionID = props.questionID
+    ? props.questionID
+    : props.location.pathname
+        .split('')
+        .slice(1)
+        .join('');
+  const { questions, authedUser } = props;
+  const author = props.users[questions[questionID].author];
+  const question = questions[questionID];
+  const isAnswered =
+    question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser);
 
   return (
     <div className={classes.container}>
@@ -24,7 +33,7 @@ const Question = props => {
           </p>
           <Link
             to={{
-              pathname: `/${question.id}`,
+              pathname: `/questions/${question.id}`,
               state: {
                 question,
                 author,
@@ -42,8 +51,10 @@ const Question = props => {
   );
 };
 
-const mapStateToProps = ({ users }) => ({
+const mapStateToProps = ({ users, authedUser, questions }) => ({
   users,
+  authedUser,
+  questions,
 });
 
 export default connect(mapStateToProps)(Question);

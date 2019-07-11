@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import UserSummary from './UserSummary';
 import classes from './Leaderboard.module.css';
 
@@ -27,4 +28,8 @@ const Leaderboard = props => {
   );
 };
 
-export default Leaderboard;
+const mapStateToProps = ({ users }) => ({
+  users,
+});
+
+export default connect(mapStateToProps)(Leaderboard);

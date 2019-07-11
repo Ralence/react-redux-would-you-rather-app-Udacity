@@ -41,6 +41,7 @@
     padding: 5px 5px;
     height: 35px;
     align-self: flex-end;
+    cursor: pointer;
 }
 
 @media (min-width: 450px) {

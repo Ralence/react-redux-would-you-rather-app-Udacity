@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import LoadingBar, { showLoading, hideLoading } from 'react-redux-loading-bar';
 import { getUsers, getQuestions } from './Actions';
 import Nav from './Components/Nav/Nav';
@@ -9,6 +9,8 @@ import NewQuestion from './Components/NewQuestion/NewQuestion';
 import Leaderboard from './Components/Leaderboard/Leaderboard';
 import Questions from './Components/Questions/Questions';
 import QuestionItem from './Components/Questions/QuestionItem/QuestionItem';
+import NoMatch from './Components/NoMatch/NoMatch';
+import PrivateRoute from './Components/HOC/PrivateRoute';
 
 import './App.css';
 
@@ -25,27 +27,19 @@ class App extends Component {
     return (
       <div className="App">
         <LoadingBar />
-        {this.props.authedUser ? (
-          <React.Fragment>
-            <Nav authedUser={this.props.authedUser} />
-            <Switch>
-              <Route exact path="/" render={() => <Questions />} />
-              <Route
-                exact
-                path="/new"
-                render={() => <NewQuestion authedUser={this.props.authedUser} />}
-              />
-              <Route
-                exact
-                path="/leaderboard"
-                render={() => <Leaderboard users={this.props.users} />}
-              />
-              <Route path="/:id" component={QuestionItem} />
-            </Switch>
-          </React.Fragment>
-        ) : (
-          <Login users={this.props.users} />
-        )}
+        <React.Fragment>
+          <Nav authedUser={this.props.authedUser} />
+          <Switch>
+            <Route path="/login" component={Login} />
+            <PrivateRoute path="/home" component={Questions} />
+            <Redirect exact from="/" to="/home" />
+            <PrivateRoute path="/add" component={NewQuestion} />
+            <PrivateRoute path="/leaderboard" component={Leaderboard} />
+            <PrivateRoute path="/questions/:id" component={QuestionItem} />
+            <PrivateRoute path="*" component={NoMatch} />
+            <Route component={NoMatch} />
+          </Switch>
+        </React.Fragment>
       </div>
     );
   }

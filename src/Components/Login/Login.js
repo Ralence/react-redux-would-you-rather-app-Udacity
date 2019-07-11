@@ -27,9 +27,13 @@ class Login extends Component {
         id = userID;
       }
     });
+    const from =
+      this.props.location !== undefined && this.props.location.state !== undefined
+        ? this.props.location.state.from
+        : '/home';
 
     this.props.dispatch(setAuthedUser(id));
-    this.props.history.push('/');
+    this.props.history.push(`${from}`);
   };
 
   render() {
@@ -66,4 +70,8 @@ class Login extends Component {
   }
 }
 
-export default withRouter(connect()(Login));
+const mapStateToProps = ({ users }) => ({
+  users,
+});
+
+export default withRouter(connect(mapStateToProps)(Login));

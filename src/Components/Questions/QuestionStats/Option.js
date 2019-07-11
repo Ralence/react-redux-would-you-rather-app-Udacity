@@ -14,7 +14,7 @@ const Option = props => {
       <div className={classes.text} style={{ height: '30px' }}>
         {userAnswer === option && <MarkUserAnswer />}
       </div>
-      <p className={classes.text}>Would you rathe {text}</p>
+      <p className={classes.text}>Would you rather {text}</p>
       <OptionStats width={persent} />
       <p className={classes.text}>
         {optionVotes} of {totalVotes} votes
